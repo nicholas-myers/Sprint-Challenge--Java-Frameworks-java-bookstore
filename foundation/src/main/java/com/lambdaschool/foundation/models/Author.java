@@ -1,5 +1,7 @@
 package com.lambdaschool.foundation.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
@@ -17,21 +19,24 @@ public class Author extends Auditable
    @NotNull
    @Column(nullable = false,
            unique = true)
-   private String lastname;
+   private String firstname;
 
    @NotNull
    @Column(nullable = false,
            unique = true)
-   private String firstname;
+   private String lastname;
 
-   @ManyToMany()
-   private List<Wrote> wrote = new ArrayList<>();
+   @OneToMany(mappedBy = "author",
+   cascade = CascadeType.ALL)
+   @JsonIgnoreProperties("author")
+   private List<Wrote> wrotes = new ArrayList<>();
 
+   public Author(){}
 
-   public Author(@NotNull String lastname, @NotNull String firstname)
+   public Author(String firstname,String lastname)
    {
-      this.lastname = lastname;
-      this.firstname = firstname;
+      this.lastname = firstname;
+      this.firstname = lastname;
    }
 
    public long getAuthorid()
@@ -62,6 +67,16 @@ public class Author extends Auditable
    public void setFirstname(String firstname)
    {
       this.firstname = firstname;
+   }
+
+   public List<Wrote> getWrotes()
+   {
+      return wrotes;
+   }
+
+   public void setWrotes(List<Wrote> wrotes)
+   {
+      this.wrotes = wrotes;
    }
 
    @Override

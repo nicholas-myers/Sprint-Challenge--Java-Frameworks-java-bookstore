@@ -27,16 +27,24 @@ public class Book extends Auditable
 
    private int copyrightdate;
 
+
    @ManyToOne
-   @JoinColumn(name = "sectionid", nullable = false)
-   @JsonIgnoreProperties(value = "section")
+   @JoinColumn(name = "sectionid")
+   @JsonIgnoreProperties(value = "books")
    private Section section;
 
-   public Book(@NotNull String booktitle, @NotNull String ISBN, int copyrightdate)
+   @OneToMany(mappedBy = "book",
+   cascade = CascadeType.ALL)
+   private List<Wrote> wrotes = new ArrayList<>();
+
+   public Book() {}
+
+   public Book(String booktitle,String ISBN, int copyrightdate, Section section)
    {
       this.booktitle = booktitle;
       this.ISBN = ISBN;
       this.copyrightdate = copyrightdate;
+      this.section = section;
    }
 
    public long getBookid()
@@ -77,6 +85,26 @@ public class Book extends Auditable
    public void setCopyrightdate(int copyrightdate)
    {
       this.copyrightdate = copyrightdate;
+   }
+
+   public Section getSection()
+   {
+      return section;
+   }
+
+   public void setSection(Section section)
+   {
+      this.section = section;
+   }
+
+   public List<Wrote> getWrotes()
+   {
+      return wrotes;
+   }
+
+   public void setWrotes(List<Wrote> wrotes)
+   {
+      this.wrotes = wrotes;
    }
 
    @Override

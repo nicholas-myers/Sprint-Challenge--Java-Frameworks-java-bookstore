@@ -24,9 +24,11 @@ public class Section extends Auditable
    @OneToMany(mappedBy = "section",
            cascade = CascadeType.ALL,
    orphanRemoval = true)
-   @JsonIgnoreProperties(value = "books",
+   @JsonIgnoreProperties(value = "section",
            allowSetters = true)
    private List<Book> books = new ArrayList<>();
+
+   public Section(){}
 
    public Section(String sectionname)
    {

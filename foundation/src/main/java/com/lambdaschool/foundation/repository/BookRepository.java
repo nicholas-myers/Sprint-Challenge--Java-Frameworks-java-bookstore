@@ -1,9 +1,9 @@
 package com.lambdaschool.foundation.repository;
 
-import com.lambdaschool.foundation.models.Role;
+import com.lambdaschool.foundation.models.Book;
 import org.springframework.data.repository.CrudRepository;
 
 public interface BookRepository
-        extends CrudRepository<Role, Long>
+        extends CrudRepository<Book, Long>
 {
 }
