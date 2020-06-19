@@ -35,8 +35,8 @@ public class Author extends Auditable
 
    public Author(String firstname,String lastname)
    {
-      this.lastname = firstname;
-      this.firstname = lastname;
+      this.lastname = lastname;
+      this.firstname = firstname;
    }
 
    public long getAuthorid()
