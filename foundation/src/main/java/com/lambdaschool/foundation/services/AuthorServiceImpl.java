@@ -37,7 +37,7 @@ public class AuthorServiceImpl implements AuthorService
       newAuthor.setFirstname(author.getFirstname());
       newAuthor.setLastname(author.getLastname());
 
-      newAuthor.getWrotes().clear();
+      newAuthor.setWrotes(author.getWrotes());
 
       return authrepos.save(newAuthor);
    }
