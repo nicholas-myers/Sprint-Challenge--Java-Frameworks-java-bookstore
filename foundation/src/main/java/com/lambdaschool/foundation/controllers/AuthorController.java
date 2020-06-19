@@ -19,7 +19,6 @@ public class AuthorController
    @Autowired
    private AuthorService authorService;
 
-   @PreAuthorize("hasAnyRole('ADMIN')")
    @GetMapping(value = "/authors",
            produces = {"application/json"})
    public ResponseEntity<?> listAllAuthors()
