@@ -1,7 +1,7 @@
 package com.lambdaschool.foundation.controllers;
 
-import com.lambdaschool.foundation.models.Author;
-import com.lambdaschool.foundation.services.AuthorService;
+import com.lambdaschool.foundation.models.Book;
+import com.lambdaschool.foundation.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,19 +13,18 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/authors")
-public class AuthorController
+@RequestMapping("/books")
+public class BookController
 {
    @Autowired
-   private AuthorService authorService;
+   private BookService bookService;
 
-   @PreAuthorize("hasAnyRole('ADMIN')")
-   @GetMapping(value = "/authors",
+   @GetMapping(value = "/books",
            produces = {"application/json"})
-   public ResponseEntity<?> listAllAuthors()
+   public ResponseEntity<?> listAllBooks()
    {
-      List<Author> allAuthors = authorService.findAllAuthors();
-      return new ResponseEntity<>(allAuthors,
+      List<Book> allBooks = bookService.findAllBooks();
+      return new ResponseEntity<>(allBooks,
               HttpStatus.OK);
    }
 }

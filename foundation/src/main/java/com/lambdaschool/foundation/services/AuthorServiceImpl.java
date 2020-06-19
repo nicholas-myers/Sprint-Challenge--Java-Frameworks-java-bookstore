@@ -20,10 +20,7 @@ public class AuthorServiceImpl implements AuthorService
    public List<Author> findAllAuthors()
    {
       List<Author> list = new ArrayList<>();
-      /*
-       * findAll returns an iterator set.
-       * iterate over the iterator set and add each element to an array list.
-       */
+
       authrepos.findAll()
               .iterator()
               .forEachRemaining(list::add);
